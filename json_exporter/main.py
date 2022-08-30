@@ -21,9 +21,9 @@ from prometheus_client.core import UntypedMetricFamily, GaugeMetricFamily, Count
 import yaml
 from yaml.error import YAMLError
 import jsonpath_ng.ext
-from . import __version__
+#from . import __version__
 
-VERSION = __version__
+VERSION = "hack"
 NAN = float('NaN')
 INVALID_METRIC_RE = re.compile(r'[^0-9a-zA-Z_:]')
 MULTI_UNDERSCORE_RE = re.compile(r'_+')
