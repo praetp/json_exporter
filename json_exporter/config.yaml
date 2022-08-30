@@ -1,0 +1,43 @@
+logging:
+    root:
+        level: INFO
+        handlers:
+            - console
+    formatters:
+        brief:
+            format: "%(asctime)s %(levelname)s: %(message)s"
+    handlers:
+        console:
+            class: logging.StreamHandler
+            stream: ext://sys.stdout
+            formatter: brief
+
+targets:
+    - name: freezer
+      url: http://192.168.1.5/meter/0
+      timeout: 2
+      rules:
+        - name: power_consumption_gauge
+          metric_path: "power"
+          metric_type: gauge
+          static_labels:
+              id: "freezer"
+        - name: power_consumption_total_watt_minutes
+          metric_path: "total"
+          metric_type: counter
+          static_labels:
+              id: "freezer"
+    - name: fridge
+      url: http://192.168.1.7/meter/0
+      timeout: 2
+      rules:
+        - name: power_consumption_gauge
+          metric_path: "power"
+          metric_type: gauge
+          static_labels:
+              id: "fridge"
+        - name: power_consumption_total_watt_minutes
+          metric_path: "total"
+          metric_type: counter
+          static_labels:
+              id: "fridge"
